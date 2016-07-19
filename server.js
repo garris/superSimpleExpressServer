@@ -20,8 +20,8 @@ if (!IP_ADDRESSES || IP_ADDRESSES.length < 1) {
   console.log("Could not resolve local IP address.");
   return 0;
 }
-USE_HTTPS = process.argv.some(function(o) { return /https/i.test(o) });
-var NODE_HOST = IP_ADDRESSES[0];
+USE_HTTPS = process.argv.some(function(o) { return /^https$/i.test(o) });
+var NODE_HOST = IP_ADDRESSES[IP_ADDRESSES.length-1];
 
 app.use(express.static(ROOT_DIR));
 
@@ -40,7 +40,6 @@ if (USE_HTTPS) {
 //===================
 
 function announce(err) {
-  var protocol = USE_HTTPS ? "https://" : "http://";
   console.log('Serving files from: '+ ROOT_DIR)
   console.log('Listening on: ' +  PROTOCOL + NODE_HOST + ':' + NODE_PORT + '');
   console.log('Press Ctrl + C to stop.');
