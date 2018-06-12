@@ -1,10 +1,9 @@
 var
   express = require('express'),
+  app    = express(),
   https = require('https'),
   fs = require('fs'),
   path = require('path'),
-  app    = express(),
-  _ = require('underscore'),
   util   = require('util'),
   os     = require('os');
 
@@ -13,7 +12,7 @@ var
   CERT_PATH = 'lib/certs/cert.pem',
   IP_ADDRESSES = getAddresses(),
   ROOT_DIR = __dirname + '/static',
-  NODE_PORT = 3001,
+  NODE_PORT = 3000,
   USE_HTTPS, PROTOCOL;
 
 if (!IP_ADDRESSES || IP_ADDRESSES.length < 1) {
@@ -47,11 +46,16 @@ function announce(err) {
 
 function getAddresses() {
   var
-    interfaces = os.networkInterfaces(),
+    network = os.networkInterfaces(),
+    interfaces = [],
     addresses = [];
 
-  _.each(interfaces,function(net) {
-    _.each(net,function(address) {
+  for (prop in network) {
+    interfaces.push(network[prop]);
+  }
+
+  interfaces.forEach(function(net) {
+    net.forEach(function(address) {
       if (address.family == 'IPv4' && !address.internal) addresses.push(address.address);
     });
   });
