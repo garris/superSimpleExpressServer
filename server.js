@@ -8,8 +8,8 @@ var
   os     = require('os');
 
 var
-  KEY_PATH = 'lib/certs/key.pem',
-  CERT_PATH = 'lib/certs/cert.pem',
+  KEY_PATH = 'certs/key.pem',
+  CERT_PATH = 'certs/cert.pem',
   IP_ADDRESSES = getAddresses(),
   ROOT_DIR = __dirname + '/static',
   NODE_PORT = 3000,
