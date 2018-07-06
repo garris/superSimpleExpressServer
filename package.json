@@ -1,7 +1,8 @@
 {
-  "name": "staticServer",
-  "description": "express static server",
-  "version": "0.0.1",
+  "name": "superSimpleExpressServer",
+  "description": "A super simple node-express web server with https option for when you quickly need to serve some static files. Package includes self-signed certificates. Don't use this for production.",
+  "version": "1.0.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "express": "3.x"
