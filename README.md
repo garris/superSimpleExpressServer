@@ -9,11 +9,13 @@ node+express: serve static files with https option
 
 ## TO RUN
 
-`npm start https`
+`npm start [../path/to/root]`
 
-or 
+Default path is `./static`
 
-`npm start`
+Default ports are `3000` (http) and `3001` (https).  These can be changed in index.js.
+
+
 
 
 ## About self signed certifictes

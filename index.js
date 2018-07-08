@@ -1,49 +1,54 @@
-var
-  express = require('express'),
-  app    = express(),
-  https = require('https'),
-  fs = require('fs'),
-  path = require('path'),
-  util   = require('util'),
-  os     = require('os');
+const express = require('express');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const os = require('os');
 
-var
-  KEY_PATH = 'certs/key.pem',
-  CERT_PATH = 'certs/cert.pem',
-  IP_ADDRESSES = getAddresses(),
-  ROOT_DIR = __dirname + '/static',
-  NODE_PORT = 3000,
-  USE_HTTPS, PROTOCOL;
+const KEY_PATH = 'certs/key.pem';
+const CERT_PATH = 'certs/cert.pem';
+const IP_ADDRESSES = getAddresses();
+const HTTP_PORT = 3000;
+const HTTPS_PORT = 3001;
+const ROOT_DIR = path.resolve(process.argv[2] || './static');
+
+const app = express();
 
 if (!IP_ADDRESSES || IP_ADDRESSES.length < 1) {
   console.log("Could not resolve local IP address.");
   return 0;
 }
-USE_HTTPS = process.argv.some(function(o) { return /^https$/i.test(o) });
+
 var NODE_HOST = IP_ADDRESSES[IP_ADDRESSES.length-1];
+
+console.log('\n---------------');
+console.log('Starting static hosts with root: ' + ROOT_DIR);
+console.log('Press Ctrl + C to exit.');
+console.log('---------------');
 
 app.use(express.static(ROOT_DIR));
 
-if (USE_HTTPS) {
-  PROTOCOL = "https://";
-  var server = https.createServer({
-    key: fs.readFileSync(path.resolve(__dirname, KEY_PATH)),
-    cert: fs.readFileSync(path.resolve(__dirname, CERT_PATH))
-  }, app);
-  server.listen(NODE_PORT, NODE_HOST, announce);
-} else {
-  PROTOCOL = "http://";
-  app.listen(NODE_PORT, announce);
-}
+app.listen(HTTP_PORT, (err) => {
+  if (err) {
+    console.log('Http method retrurned an error when trying to start.', err);
+  } else {
+    console.log('Listening on: http://' + NODE_HOST + ':' + HTTP_PORT + '');
+  }
+});
 
-//===================
+const server = https.createServer({
+  key: fs.readFileSync(path.resolve(__dirname, KEY_PATH)),
+  cert: fs.readFileSync(path.resolve(__dirname, CERT_PATH))
+}, app);
+server.listen(HTTPS_PORT, NODE_HOST, (err) => {
+  if (err) {
+    console.log('Https method retrurned an error when trying to start.', err);
+  } else {
+    console.log('Listening on: https://' + NODE_HOST + ':' + HTTPS_PORT + '');
+  }
+});
 
-function announce(err) {
-  console.log('Serving files from: '+ ROOT_DIR)
-  console.log('Listening on: ' +  PROTOCOL + NODE_HOST + ':' + NODE_PORT + '');
-  console.log('Press Ctrl + C to stop.');
-}
-
+//=======
 function getAddresses() {
   var
     network = os.networkInterfaces(),
