@@ -1,10 +1,13 @@
 {
-  "name": "superSimpleExpressServer",
-  "description": "A super simple node-express web server with https option for when you quickly need to serve some static files. Package includes self-signed certificates. Don't use this for production.",
-  "version": "1.0.0",
-  "main": "index.js",
-  "private": true,
   "dependencies": {
-    "express": "3.x"
-  }
+    "express": "^4.16.3"
+  },
+  "description": "A super simple node-express web server with https option for when you quickly need to serve some static files. Package includes self-signed certificates. Don't use this for production.",
+  "scripts": {
+  	"start": "node ./"
+  },
+  "main": "index.js",
+  "name": "superSimpleExpressServer",
+  "private": true,
+  "version": "1.0.0"
 }
