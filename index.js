@@ -5,21 +5,24 @@ const path = require('path');
 const util = require('util');
 const os = require('os');
 
-const KEY_PATH = 'certs/key.pem';
-const CERT_PATH = 'certs/cert.pem';
-const IP_ADDRESSES = getAddresses();
+const USE_LOCALHOST = true;
 const HTTP_PORT = 3000;
 const HTTPS_PORT = 3001;
+const KEY_PATH = 'certs/key.pem';
+const CERT_PATH = 'certs/cert.pem';
+
+const LOCALHOST_IP = '127.0.0.1';
 const ROOT_DIR = path.resolve(process.argv[2] || './static');
 
 const app = express();
+const ip_addresses = getAddresses();
 
-if (!IP_ADDRESSES || IP_ADDRESSES.length < 1) {
+if (!ip_addresses || ip_addresses.length < 1) {
   console.log("Could not resolve local IP address.");
   return 0;
 }
 
-var NODE_HOST = IP_ADDRESSES[IP_ADDRESSES.length-1];
+var NODE_HOST = USE_LOCALHOST ? LOCALHOST_IP : ip_addresses[ip_addresses.length-1];
 
 console.log('\n---------------');
 console.log('Starting static hosts with root: ' + ROOT_DIR);
