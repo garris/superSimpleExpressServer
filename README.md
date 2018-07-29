@@ -2,12 +2,12 @@
 Serve static files on localhost with http & https.
 
 
-##TO INSTALL
+## TO INSTALL
 
 Clone repo and run `npm install` in the root directory.
 
 
-##TO RUN
+## TO RUN
 
 `npm start [</path/to/web/root>]`
 
