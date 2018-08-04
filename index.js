@@ -12,7 +12,7 @@ const KEY_PATH = 'certs/key.pem';
 const CERT_PATH = 'certs/cert.pem';
 
 const LOCALHOST_IP = '127.0.0.1';
-const ROOT_DIR = path.resolve(process.argv[2] || './static');
+const ROOT_DIR = path.resolve(process.argv[2] || './');
 
 const app = express();
 const ip_addresses = getAddresses();

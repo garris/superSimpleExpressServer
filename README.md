@@ -12,7 +12,7 @@ Clone repo and run `npm install` in the root directory.
 `npm start [</path/to/web/root>]`
 
 ###Default path 
-Default path is `./static` relative to the current working directory.  Override by passing an optional path to your desired web root directory.
+Default path is your current working directory.  Override by passing an optional path to your desired web root directory.
 
 ###Default ports
 Default ports are `3000` (http) and `3001` (https).  These can be changed in `index.js`.
