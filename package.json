@@ -7,7 +7,6 @@
   	"start": "node ./"
   },
   "main": "index.js",
-  "name": "superSimpleExpressServer",
-  "private": true,
+  "name": "super-simple-web-server",
   "version": "1.0.0"
 }

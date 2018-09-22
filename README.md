@@ -1,8 +1,12 @@
-# superSimpleExpressServer
+# super-simple-web-server
 Serve static files on localhost with http & https.
 
 
 ## TO INSTALL
+
+`npm install super-simple-web-server`
+
+### or
 
 Clone repo and run `npm install` in the root directory.
 
