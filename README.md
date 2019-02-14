@@ -15,13 +15,13 @@ Clone repo and run `npm install` in the root directory.
 
 `npm start [</path/to/web/root>]`
 
-###Default path 
+### Default path 
 Default path is your current working directory.  Override by passing an optional path to your desired web root directory.
 
-###Default ports
+### Default ports
 Default ports are `3000` (http) and `3001` (https).  These can be changed in `index.js`.
 
-###Default IP
+### Default IP
 The default IP `127.0.0.1` which should convieniently map to `localhost`.
 
 Pro tip: Setting `USE_LOCALHOST = false` in `index.js` will instead scan for existing bound IP addresses on your machine via `os.networkInterfaces()`.  The last available will be used.
