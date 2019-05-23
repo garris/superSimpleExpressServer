@@ -30,7 +30,6 @@ function logger(req, res, next) {
   next(); //Run the next handler (IMPORTANT, otherwise your page won't be served)
 }
 
-
 /**
  * To add middleware set the third arg to a path that resolves to a file exporting a function like so...
  * module.exports = (app) => { app.use(someCoolThingHere);}
