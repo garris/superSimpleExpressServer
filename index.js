@@ -24,12 +24,36 @@ if (!ip_addresses || ip_addresses.length < 1) {
 
 var NODE_HOST = USE_LOCALHOST ? LOCALHOST_IP : ip_addresses[ip_addresses.length-1];
 
+//Runs every time a request is recieved
+function logger(req, res, next) {
+  console.log('Request from: ', req.path); //Log the request to the console
+  next(); //Run the next handler (IMPORTANT, otherwise your page won't be served)
+}
+
+
+/**
+ * To add middleware set the third arg to a path that resolves to a file exporting a function like so...
+ * module.exports = (app) => { app.use(someCoolThingHere);}
+ */
+const MIDDLEWARE_PATH = path.resolve(process.argv[3] || false);
+if (MIDDLEWARE_PATH) {
+  try {
+      var initMiddleware = require(MIDDLEWARE_PATH);
+      initMiddleware(app);
+  } catch (err) {
+      console.log('Error initalizing middleware. ', err);
+  }
+} else {
+      console.log('No middleware found.');
+}
+
+app.use(logger);
+app.use(express.static(ROOT_DIR));
+
 console.log('\n---------------');
 console.log('Starting static hosts with root: ' + ROOT_DIR);
 console.log('Press Ctrl + C to exit.');
 console.log('---------------');
-
-app.use(express.static(ROOT_DIR));
 
 app.listen(HTTP_PORT, (err) => {
   if (err) {
