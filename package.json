@@ -2,6 +2,10 @@
   "dependencies": {
     "express": "^4.16.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garris/superSimpleExpressServer.git"
+  },
   "description": "A super simple node-express web server with https option for when you quickly need to serve some static files. Package includes self-signed certificates. Don't use this for production.",
   "scripts": {
     "start": "node ./"
