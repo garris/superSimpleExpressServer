@@ -19,7 +19,9 @@ Clone repo and run `npm install` in the root directory.
 Default path is your current working directory.  Override by passing an optional path to your desired web root directory.
 
 ### Default ports
-Default ports are `3000` (http) and `3001` (https).  These can be changed in `index.js`.
+These can be changed by passing through environment variables when starting the server:
+`SSWS_HTTP_PORT` = http port (defaults to `3000`)
+`SSWS_HTTPS_PORT` = https port (defaults to `3001`)
 
 ### Default IP
 The default IP `127.0.0.1` which should convieniently map to `localhost`.
