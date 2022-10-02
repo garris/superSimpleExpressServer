@@ -6,8 +6,8 @@ const util = require('util');
 const os = require('os');
 
 const USE_LOCALHOST = true;
-const HTTP_PORT = 3000;
-const HTTPS_PORT = 3001;
+const HTTP_PORT = process.env.SSWS_HTTP_PORT || 3000;
+const HTTPS_PORT = process.env.SSWS_HTTPS_PORT || 3001;
 const KEY_PATH = 'certs/key.pem';
 const CERT_PATH = 'certs/cert.pem';
 
