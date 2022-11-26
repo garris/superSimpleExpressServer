@@ -11,6 +11,7 @@
     "start": "node ./"
   },
   "main": "index.js",
+  "license": "MIT",
   "name": "super-simple-web-server",
   "version": "1.1.2"
 }
